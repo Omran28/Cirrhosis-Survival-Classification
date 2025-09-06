@@ -8,25 +8,66 @@
 ---
 
 ## 📌 Project Overview
-This project leverages **machine learning** to predict survival outcomes for patients with cirrhosis. By analyzing clinical and demographic data, it provides actionable insights to assist healthcare professionals in **prognosis and risk stratification**.
+This project leverages **machine learning and deep learning techniques** to predict survival outcomes for patients with cirrhosis. By analyzing clinical and demographic data, it provides actionable insights to assist healthcare professionals in **prognosis, risk stratification, and clinical decision-making**.
 
-> “Transforming clinical data into life-saving insights.”  
+> “Transforming patient data into actionable insights with precision and reliability.”
 
 ---
 
 ## 🧰 Key Features
-- ✅ **Data Preprocessing:** Handles missing values, scaling, and categorical encoding.  
-- ✅ **Modeling:** Implements **neural networks**, **tree-based models**, and baseline classifiers for comparison.  
-- ✅ **Evaluation:** Generates **accuracy, precision, recall, F1-score, and AUC** metrics.  
-- ✅ **Visualization:** Charts for survival analysis, feature importance, and prediction results.  
-- ✅ **Extensible:** Modular code for easy experimentation with new models or datasets.  
+- **Data Preprocessing:**  
+  - Handling missing values with imputation strategies.  
+  - Scaling continuous features using standardization.  
+  - One-hot encoding categorical variables like Gender and Comorbidities.  
+  - Splitting data into **training, validation, and test sets**.  
+
+- **Modeling:**  
+  - Implements a **custom Neural Network architecture** using PyTorch.  
+  - Comparison with classical ML models like Random Forest and XGBoost for benchmarking.  
+  - Implements **stochastic depth and dropout** to reduce overfitting.  
+
+- **Evaluation:**  
+  - Metrics include **accuracy, precision, recall, F1-score, and ROC-AUC**.  
+  - Confusion matrix and feature importance visualization.  
+
+- **Visualization:**  
+  - Survival curves, prediction distributions, and feature importance plots for clinical interpretability.  
 
 ---
 
-## 📂 Dataset
-- **Source:** [Specify source or indicate proprietary data]  
-- **Format:** CSV with clinical features and survival labels  
-- **Key Features:** Age, Bilirubin, Albumin, Platelets, Gender, Survival Status, etc.  
+## 🗂 Project Workflow
+
+1. **Data Collection:**  
+   - Source: [Specify source or indicate proprietary data]  
+   - Data includes clinical parameters such as Age, Bilirubin, Albumin, Platelets, Gender, and Survival Status.  
+
+2. **Data Cleaning & Preprocessing:**  
+   - Remove irrelevant columns (e.g., patient ID).  
+   - Impute missing values using median or mean strategies.  
+   - One-hot encode categorical variables.  
+   - Scale numeric features using `StandardScaler`.  
+   - Split into training (70%), validation (15%), and test sets (15%).  
+
+3. **Model Architecture (Neural Network):**  
+   - **Input Layer:** Number of features after preprocessing.  
+   - **Hidden Layers:**  
+     - Layer 1: 256 neurons + ReLU + LayerNorm + Dropout  
+     - Layer 2: 128 neurons + ReLU + LayerNorm + Dropout  
+     - Layer 3: 64 neurons + ReLU + LayerNorm + Dropout  
+   - **Output Layer:** 2 neurons (for survival vs non-survival) + Softmax.  
+   - **Regularization:** Dropout rate of 0.2–0.3 and stochastic depth to prevent overfitting.  
+   - **Optimizer:** Adam with learning rate scheduler.  
+   - **Loss Function:** Cross-Entropy Loss with optional class weighting for imbalance.  
+
+4. **Model Training:**  
+   - Trained for 100 epochs with early stopping based on validation loss.  
+   - Uses **mini-batch gradient descent** (batch size = 32–64).  
+   - Monitors training and validation loss/accuracy to prevent overfitting.  
+
+5. **Evaluation & Interpretation:**  
+   - Evaluate metrics on validation and test sets.  
+   - Plot confusion matrix and ROC curve.  
+   - Analyze feature importance from classical models for interpretability.  
 
 ---
 
